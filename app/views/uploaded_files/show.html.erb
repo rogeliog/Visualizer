@@ -1,0 +1,10 @@
+<h1>Ya subimos un archivo</h1>
+
+<p>selecciona columnas:</p>
+
+<ul>
+  <% @uploaded_file.column_names.each do |column| %>
+    <li><%= column %></li>
+  <% end %>
+</ul>
+

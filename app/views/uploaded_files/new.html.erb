@@ -1,0 +1,9 @@
+
+<%= form_tag uploaded_files_path, :method => :post, :multipart => true do |f| %>
+
+	<%= label_tag :file %>
+	<%= file_field_tag :file %>
+
+	<%= submit_tag 'send' %>
+
+<% end %>
