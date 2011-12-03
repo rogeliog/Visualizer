@@ -14,6 +14,7 @@ class UploadedFilesController < ApplicationController
 
   def show
     @uploaded_file = UploadedFile.find(params[:id])
+    @dataset = Dataset.new
   end
 
 

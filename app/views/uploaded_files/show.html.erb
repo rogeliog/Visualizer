@@ -2,9 +2,26 @@
 
 <p>selecciona columnas:</p>
 
-<ul>
-  <% @uploaded_file.column_names.each do |column| %>
-    <li><%= column %></li>
-  <% end %>
-</ul>
+<%= form_for @dataset, :method => :post do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+    <%= hidden_field_tag :uploaded_file_id, @uploaded_file.id %>
+  </p>
+
+   <p>
+    <%= f.label :state_column_name %>
+    <%= f.select :state_column_name, @uploaded_file.column_names, :include_blank => true %>
+  </p>
+  
+  <p>
+    <%= f.label :default_column_name %>
+    <%= f.select :default_column_name, @uploaded_file.column_names, :include_blank => true %>
+  </p>
+  
+  <p>
+    <%= f.submit :send %>
+  </p>
+
+<% end %>
 

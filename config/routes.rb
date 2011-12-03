@@ -1,5 +1,6 @@
 Visualizer::Application.routes.draw do
   resources :uploaded_files
+  resources :datasets
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
