@@ -32,7 +32,6 @@ $(function() {
   });
 
 
-  $( "#menu" ).draggable();
 
 
 });
