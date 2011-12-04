@@ -1,6 +1,7 @@
 $(function () {
   var po = org.polymaps;
   var id = $('.tiles-map').attr('id');
+  var ranges;
 
   var map = po.map()
       .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
@@ -26,11 +27,16 @@ $(function () {
 
   var setRadius = function(points, name) {
     $.each(points, function(index, point){
-      // console.log(point.feature);
-      // var val = point.feature.properties[name];
-      // console.log(val);
+      console.log(name);
+      console.log(window.datasetRanges);
 
-      point.setAttribute("r", Math.ceil(Math.random()* 50));
+      var val    = point.feature.properties[name];
+      var ranges = window.datasetRanges[name];
+      var r = val / ranges[1] * 30;
+
+      if (!isNaN(r)) {
+        point.setAttribute("r", r);
+      };
     });
   };
 
@@ -55,7 +61,7 @@ $(function () {
       g.setAttribute("data-name", f.data.id);
       c.parentNode.replaceChild(g, c);
     }
-    setRadius(points);
+    setRadius(points, window.datasetDefaultColumn);
   };
 
   $('#config').on('change', 'input[type=radio]', function(){

@@ -5,6 +5,12 @@
     $("#menu").draggable();
     $("#datasets").draggable();
   });
+
+  <% if @dataset %>
+    window.datasetRanges = <%= @dataset.values.to_json.html_safe %>;
+    window.datasetDefaultColumn = '<%= @dataset.default_column_name %>';
+    window.datasetCircleRadius = 100;
+  <% end %>
 </script>
 <%= debug @dataset.to_param %>
 <div class='tiles-map' id="<%= @dataset.try :to_param %>"></div>
@@ -37,8 +43,8 @@
     <ul>
       <% @attributes.try :each do |attr|%>
         <li>
-          <input name="attribute" type="radio" value="attr">
-            <%= attr %>
+          <input name="attribute" type="radio" value="<%= attr %>">
+          <label for="attribute"><%= attr %></label>
           </input> 
         </li>
       <%end %>
