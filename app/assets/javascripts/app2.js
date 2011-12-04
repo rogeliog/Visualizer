@@ -1,3 +1,16 @@
+function humanNumber(nStr) {
+  nStr += '';
+  x = nStr.split('.');
+  x1 = x[0];
+  x2 = x.length > 1 ? '.' + x[1] : '';
+  var rgx = /(\d+)(\d{3})/;
+  while (rgx.test(x1)) {
+    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+  }
+  	
+  return x1 + x2;
+}
+
 $(function () {
   var po = org.polymaps;
   var id = $('.tiles-map').attr('id');
@@ -31,6 +44,23 @@ $(function () {
       var val    = point.feature.properties[name];
       var ranges = window.datasetRanges[name];
       var r = val / ranges[1] * window.datasetScale;
+
+      // Popover
+      $(point).click(function() {
+        var pointPosition = $(this).position();
+        $(".popover").css({
+          top: pointPosition.top - 30,
+          left: pointPosition.left - 10
+        });
+        $(".popover #popoverLabel").text(humanNumber(val));
+        $(".popover").show();
+      });
+      
+      $(point).mouseleave(function() {
+        setTimeout(function() {
+          $(".popover").hide();          
+        }, 2000);
+      });
 
       if (!isNaN(r)) {
         point.setAttribute("r", r);
