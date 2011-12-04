@@ -16,7 +16,7 @@ class MapsController < ApplicationController
     # flip round the y coordinate for mapbox
     y = ((2**params[:zoom].to_f) - 1) - params[:row].to_f
 
-    db = SQLite3::Database.new "#{Rails.root}/db/Mexico.mbtiles"
+    db = SQLite3::Database.new "#{Rails.root}/db/WorldStates.mbtiles"
     rows = db.execute("select images.tile_data 
                        from map 
                        inner join images 
