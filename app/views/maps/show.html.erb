@@ -2,14 +2,14 @@
 <% javascript_include_tag 'ui.js' %>
 <script>
   $(function(){
-    $("#menu").draggable();
+    // $("#menu").draggable();
     $("#datasets").draggable();
   });
 
   <% if @dataset %>
     window.datasetRanges = <%= @dataset.values.to_json.html_safe %>;
     window.datasetDefaultColumn = '<%= @dataset.default_column_name %>';
-    window.datasetCircleRadius = 100;
+    window.datasetScale = 30;
   <% end %>
 </script>
 <%= debug @dataset.to_param %>
@@ -31,7 +31,6 @@
 <%= render :partial => "shared/side_menu" %>
 
 <div id='menu'>
-
   <div id='config' class='item'>
     <h2>Configuration</h2>
     <ul>
@@ -42,6 +41,7 @@
           </input> 
         </li>
       <%end %>
+      <input type="range" id="scale" min="50" max="130" />
     </ul>
     <% if @dataset.present? %>
       <div id='cross_matcher'>

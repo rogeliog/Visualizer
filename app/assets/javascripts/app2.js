@@ -26,13 +26,11 @@ $(function () {
       .pan("none"));
 
   var setRadius = function(points, name) {
+    window.datasetProperty = name;
     $.each(points, function(index, point){
-      console.log(name);
-      console.log(window.datasetRanges);
-
       var val    = point.feature.properties[name];
       var ranges = window.datasetRanges[name];
-      var r = val / ranges[1] * 30;
+      var r = val / ranges[1] * window.datasetScale;
 
       if (!isNaN(r)) {
         point.setAttribute("r", r);
@@ -67,4 +65,9 @@ $(function () {
   $('#config').on('change', 'input[type=radio]', function(){
     setRadius( $('svg.map circle.point').toArray(), $(this).val());
   })
+
+  $('input#scale').change(function(){
+    window.datasetScale = $(this).val();
+    setRadius( $('svg.map circle.point').toArray(), window.datasetProperty);
+  });
 });
