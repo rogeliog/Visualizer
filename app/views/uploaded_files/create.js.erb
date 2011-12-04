@@ -1,3 +1,7 @@
 $("#loader").fadeOut();
+<% if @uploaded_file %>
 $("#new #step h2").html("Escoge las columnas");
 $("#new #action").html("<%= escape_javascript(render :partial => 'uploaded_files/show') %>");
+<% else %>
+  $("#new #step h2").html("No pudimos leer el archivo. Intenta con otro.");
+<% end %>
