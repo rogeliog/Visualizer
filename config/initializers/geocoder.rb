@@ -1,1 +1,0 @@
-Geocoder::Configuration.lookup = :yahoo
