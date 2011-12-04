@@ -1,5 +1,10 @@
 <%= render :partial => "shared/header" %>
-
+<% javascript_include_tag 'ui.js' %>
+<script>
+  $(function(){
+    $("#menu").draggable();
+  });
+</script>
 <div id='map'></div>
 <div id='datasets'>
   <h2>
