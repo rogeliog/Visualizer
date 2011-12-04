@@ -7,9 +7,16 @@ class UploadedFilesController < ApplicationController
   end
 
   def create
-    @uploaded_file = save_file(params[:file])
+    begin
+      @uploaded_file = save_file(params[:file])
+    rescue
+      @uploaded_file = nil
+    end
     @dataset = Dataset.new
-    respond_to { |format| format.js }
+    respond_to do |format| 
+      format.js 
+      format.html
+    end
   end
 
 
@@ -21,7 +28,7 @@ class UploadedFilesController < ApplicationController
 
   def save_file(file)
     data = CSV.read(file.path)
-
+    CSV.parse(File.open(file.path, "r:UTF-8")) 
     # get column names
     column_names = data.shift
 
@@ -36,7 +43,6 @@ class UploadedFilesController < ApplicationController
       content << new_row
     end
 
-    UploadedFile.create(:column_names => column_names, :content => content)
+    pf = UploadedFile.create(:column_names => column_names, :content => content)
   end
-
 end
