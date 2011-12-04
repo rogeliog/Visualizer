@@ -1,3 +1,10 @@
 // Place all the styles related to the datasets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#datasets {
+  z-index:1;
+  position:absolute;
+  top: 20px;
+  left: 20px;
+}
