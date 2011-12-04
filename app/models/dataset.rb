@@ -7,5 +7,7 @@ class Dataset
   field :column_names
   field :content
   field :processing
+  field :values
+
   validates_presence_of :name, :state_column_name, :default_column_name, :processing
 end
