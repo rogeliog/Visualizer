@@ -16,4 +16,9 @@ class DatasetsController < ApplicationController
       format.json { render :json => @dataset }
     end
   end
+
+  def add
+    Dataset.find(params['id']).add(params['matcher-1'],params['matcher-2'], params['name'])
+    redirect_to '/map'
+  end
 end
