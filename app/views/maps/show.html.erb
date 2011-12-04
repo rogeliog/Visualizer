@@ -1,5 +1,18 @@
 
 <div id='map'></div>
+<div id='datasets'>
+  <h2>
+    Datasets
+  </h2>
+  <ul>
+    <% @datasets.each do |dataset|%>
+      <li>
+      <%= link_to dataset.name, "#", :data => dataset.id %>
+      </li>
+    <%end%>
+  </ul>
+
+</div>
 
 <div id='side_menu'>
   <ul>
@@ -16,7 +29,7 @@
     <ul>
       <% @attributes.each do |attr|%>
         <li>
-        <input type="checkbox" name="option1" value="Milk"> <%= attr%> 
+        <input type="checkbox" name="option1" value="Milk"> <%= attr %> 
         </li>
       <%end %>
     </ul>
@@ -28,9 +41,7 @@
       <div class='step' class='item'>
         <h2>Upload your file</h2>
       </div>
-      <input type="file" name="filename" />
-      <button>Upload it!</button>
-      <a href='#' class='next-action'>Next</a>
+      <%= render 'uploaded_files/form'%>
     </div>
 
     <div class='action' id='action-2' act='2'>

@@ -1,7 +1,7 @@
 Visualizer::Application.routes.draw do
   resources :uploaded_files
   resources :datasets
-  match 'maps' => 'maps#show'
+  match 'map' => 'maps#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
