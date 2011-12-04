@@ -1,9 +1,8 @@
-
 <%= form_tag uploaded_files_path, :method => :post, :remote => true do |f| %>
 
-	<%= label_tag :file %>
+	<%= label_tag :file,  "Archivo" %>
 	<%= file_field_tag :file %>
 
-	<%= submit_tag 'send' %>
+	<%= submit_tag 'Subir' %>
 
 <% end %>
