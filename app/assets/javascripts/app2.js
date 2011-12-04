@@ -23,13 +23,13 @@ $(function () {
       .zoomRange([4, 6])
       .add(po.interact());
 
-  map.add(po.image()
-      .url(po.url("/tiles/{Z}/{X}/{Y}.png")
-      ));
-  
   // map.add(po.image()
-  //     .url(po.url("http://api.tiles.mapbox.com/v3/upload.r2bhxchr,mapbox.mexico-borders.html#{Z}/{X}/{Y}")
+  //     .url(po.url("/tiles/{Z}/{X}/{Y}.png")
   //     ));
+  
+  map.add(po.image()
+      .url(po.url("http://api.tiles.mapbox.com/v2/upload.r2bhxchr,mapbox.mexico-borders/{Z}/{X}/{Y}.png")
+      ));
 
   if (id) {
     map.add(po.geoJson()

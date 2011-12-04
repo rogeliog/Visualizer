@@ -18,9 +18,11 @@ $(function() {
     $("#config").slideUp();
     $("#share").slideUp();
     $('#top').slideUp();
+    $('#menu').hide();
   });
 
   $('.trigger').click(function() {
+    $('#menu').show();
     $("#new").hide();
     $("#config").hide();
     $("#share").hide();
