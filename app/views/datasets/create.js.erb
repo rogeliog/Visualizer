@@ -1,4 +1,15 @@
 $("#loader").fadeOut();
-$("#new #step h2").html("Felicidades ya todo listo!");
-$("#new #action").html("");
+$("#new #step h2").html("Procesando datos.");
+$("#new #action").html(
+  "<p>Puedes subir otro archivo de datos o cerrar esta ventana.</p>"+
+  "<%= escape_javascript(render :partial => 'uploaded_files/form') %>");
 
+
+var ds = new Dataset(
+  "<%= @dataset.id %>",
+  "<%= escape_javascript @dataset.name %>",
+  "<%= escape_javascript dataset_path(@dataset) %>",
+  $("#datasets ul")
+);
+
+ds.startProcessingCheck("<%= escape_javascript image_tag('ajax-loader.gif') %>");

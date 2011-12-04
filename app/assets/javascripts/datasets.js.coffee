@@ -2,6 +2,41 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+class Dataset
+  constructor: (id, name, path, container)->
+    @id = id
+    @processing = false
+
+    @link = $("<a></a>")
+    @link.attr("href", path)
+    @link.append(name)
+    container.append($("<li></li>").append(@link))
+
+    @link.click(@onclick)
+
+  startProcessingCheck: (ajaxy_indicator)->
+    url = '/datasets/'+@id+'/processing_status'
+    spinner = $("<img src=\"/assets/ajax-loader-small.gif\" />")
+    @link.append(spinner)
+
+    @processing = true
+
+    stillProcessing = ->
+      $.get url, (data)->
+        if data.processing == 't'
+          setTimeout stillProcessing, 1000
+        else
+          spinner.remove()
+          @processing = false
+
+    stillProcessing()
+
+  onclick: (e)->
+    if @processing == 't'
+      e.preventDefault()
+
+
+window.Dataset = Dataset
 
 $ ->
 
@@ -28,7 +63,6 @@ $ ->
     e.preventDefault()
     id = $(this).attr('data')
     $.getJSON "/datasets/#{id}", (data, status)->
-      console.log(data)
       $('#config ul').html('')
       append_dataset_column column for column in data.column_names
       generate_x_match_form data.column_names, id
