@@ -2,9 +2,15 @@
 <% javascript_include_tag 'ui.js' %>
 <script>
   $(function(){
-    $("#menu").draggable();
+    // $("#menu").draggable();
     $("#datasets").draggable();
   });
+
+  <% if @dataset %>
+    window.datasetRanges = <%= @dataset.values.to_json.html_safe %>;
+    window.datasetDefaultColumn = '<%= @dataset.default_column_name %>';
+    window.datasetScale = 30;
+  <% end %>
 </script>
 <%= debug @dataset.to_param %>
 <div class='tiles-map' id="<%= @dataset.try :to_param %>"></div>
@@ -25,17 +31,18 @@
 <%= render :partial => "shared/side_menu" %>
 
 <div id='menu'>
-
+  <div id='top'><span>close x</span></div>
   <div id='config' class='item'>
     <h2>Configuration</h2>
     <ul>
       <% @attributes.try :each do |attr|%>
         <li>
-        <input name="attribute" type="radio" value="attr">
-        <%= attr %>
-        </input> 
+          <input name="attribute" type="radio" value="<%= attr %>">
+            <label for="attribute"><%= attr %></label>
+          </input> 
         </li>
       <%end %>
+      <input type="range" id="scale" min="50" max="130" />
     </ul>
     <% if @dataset.present? %>
       <div id='cross_matcher'>

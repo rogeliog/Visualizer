@@ -13,4 +13,9 @@ class DatasetsController < ApplicationController
     @dataset.add(params['matcher-1'],params['matcher-2'], params['name'])
     redirect_to @dataset
   end
+
+
+  def processing_status
+    render :json => { :processing => Dataset.find(params[:id]).processing }
+  end
 end

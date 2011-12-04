@@ -43,4 +43,8 @@ class MapsController < ApplicationController
 
     render :json => {:type => 'FeatureCollection', :features => data}
   end
+
+  def ranges
+    render :json => Dataset.find(params[:id]).values
+  end
 end

@@ -1,6 +1,7 @@
 $(function () {
   var po = org.polymaps;
   var id = $('.tiles-map').attr('id');
+  var ranges;
 
   var map = po.map()
       .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
@@ -24,10 +25,16 @@ $(function () {
   map.add(po.compass()
       .pan("none"));
 
-  var setRadius = function(points) {
+  var setRadius = function(points, name) {
+    window.datasetProperty = name;
     $.each(points, function(index, point){
-      console.log(point.feature);
-      point.setAttribute("r", Math.ceil(Math.random()* 50));
+      var val    = point.feature.properties[name];
+      var ranges = window.datasetRanges[name];
+      var r = val / ranges[1] * window.datasetScale;
+
+      if (!isNaN(r)) {
+        point.setAttribute("r", r);
+      };
     });
   };
 
@@ -43,7 +50,7 @@ $(function () {
       point.setAttribute("cx", 0);
       point.setAttribute("cy", 0);
       point.setAttribute("class", "point");
-      point.feature = f;
+      point.feature = f.data;
 
       points.push(point);
 
@@ -52,11 +59,15 @@ $(function () {
       g.setAttribute("data-name", f.data.id);
       c.parentNode.replaceChild(g, c);
     }
-    setRadius(points);
+    setRadius(points, window.datasetDefaultColumn);
   };
 
   $('#config').on('change', 'input[type=radio]', function(){
-    console.log($(this).val());
-    setRadius( $('svg.map circle.point').toArray() );
+    setRadius( $('svg.map circle.point').toArray(), $(this).val());
   })
+
+  $('input#scale').change(function(){
+    window.datasetScale = $(this).val();
+    setRadius( $('svg.map circle.point').toArray(), window.datasetProperty);
+  });
 });

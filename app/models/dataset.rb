@@ -36,7 +36,7 @@ class Dataset
   private
 
   def parse_result(matcher_1,matcher_2)
-      if matcher_1.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and  matcher_2.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and !matcher_2.zero?
+      if matcher_1.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and  matcher_2.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and !matcher_2.to_f.zero?
         result = (matcher_1.to_f/matcher_2.to_f).round(3) rescue 0
       else
         result = 0.0

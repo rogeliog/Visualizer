@@ -5,19 +5,26 @@
 $(function() {
   // Hide the elements
 
-  $("#config").hide();
-  $("#new").hide();
-  $("#share").hide();
-  $("#action-1").hide();
-  $("#action-2").hide();
-  $("#action-3").hide();
+
   $("#loader").hide();
+  $("#top").hide();
+    $("#new").hide();
+    $("#config").hide();
+    $("#share").hide();
 
   // Menu triggers
+  $('#top span').click(function() {
+    $("#new").slideUp();
+    $("#config").slideUp();
+    $("#share").slideUp();
+    $('#top').slideUp();
+  });
+
   $('.trigger').click(function() {
     $("#new").hide();
     $("#config").hide();
     $("#share").hide();
+      $("#top").fadeIn();
     $("#"+$(this).attr("rel")).fadeIn();
     if($(this).attr("rel")=='new')
       $("#action-1").fadeIn();

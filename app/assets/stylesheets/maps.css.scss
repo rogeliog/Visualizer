@@ -99,30 +99,6 @@
   }
 }
 
-#menu {
-  background: rgba(255, 255, 255, 0.6);
-  padding:0px;
-  width: 300px;
-  position: fixed;
-  top: 200px;
-  right: 200px;
-  z-index: 1;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-#menu ul{
-  list-style:none;
-  padding:0;
-}
-
-#menu li{
-  padding:10px;
-}
-#menu li:hover{
-  background:#fff;
-}
-
 #new{
   padding:0px;
   cursor: move;
@@ -147,4 +123,41 @@
     background:#f90;
     padding:10px;
     margin-top:10px;
+}
+
+#menu{
+  background:#ddd;
+  padding:0px;
+  width:300px;
+  position:fixed;
+  top:200px;
+  right:200px;
+  z-index:1;
+  max-height: 400px;
+  overflow: scroll;
+}
+#menu #top{
+  text-align:right;
+  background:#aaa;
+  color:#fff;
+  padding:3px;
+  span{
+    cursor:pointer;
+  }
+}
+#menu ul{
+  list-style:none;
+  padding:0;
+}
+
+#menu li{
+  padding:10px;
+}
+#menu li:hover{
+  background:#fff;
+}
+
+circle {
+  opacity:0.6;
+  fill: blue;
 }
