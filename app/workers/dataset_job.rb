@@ -15,16 +15,17 @@ class DatasetJob
       name = row.delete(@dataset.state_column_name)
       lat, lng = geo.getcoords(name)
       data = {
-        :name => name,
-        :lat => lat,
-        :lng => lng,
-        :attributes => row
+        :id => name,
+        :type => 'Feature',
+        :geometry => {:type => 'Point', :coordinates => [lat, lng]},
+        :properties => row
       }
 
       @dataset.content << data
     end
 
     @dataset.column_names = @uploaded_file.column_names
+    @dataset.column_names.delete(@dataset.state_column_name)
     @dataset.processing = "f"
     @dataset.save!
   end
