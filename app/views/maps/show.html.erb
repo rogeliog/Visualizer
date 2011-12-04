@@ -20,13 +20,7 @@
 
 </div>
 
-<div id='side_menu'>
-  <ul>
-    <li class="trigger" rel='new'><a href="#"><%= image_tag "home.png", :height=>  '50px' %></a></li>
-    <li class="trigger" rel='config'><a href="#"><%= image_tag "like.png" %></a></li>
-    <li class="trigger" rel='share'><a href="#"><%= image_tag "shuffle.png" %></a></li>
-  </ul>
-</div>
+<%= render :partial => "shared/side_menu" %>
 
 <div id='menu'>
 
