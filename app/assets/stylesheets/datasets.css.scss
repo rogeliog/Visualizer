@@ -35,16 +35,22 @@ background: -ms-linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
   width:200px;
   top: 40%;
   left: 0px;
+  
   h2{
     font-size:20px;
     margin-left:10px;
-    color:#000;
+    color:#929597;
+    cursor: move;
   }
 
   li{
-    h3 a{
-      font-size:10px;
-      text-decoration:none;
+    h3 a {
+      color: #929597;
+      text-decoration: none;
+      display: block;
+    }
+    h3 a:hover {
+      text-decoration: underline;
     }
     padding:10px;
     height:10px;
