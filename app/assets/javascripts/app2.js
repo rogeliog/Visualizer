@@ -7,7 +7,7 @@ $(function () {
       .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
       .center({lat: 25.67, lon: -100.30})
       .zoom(6)
-      .zoomRange([5, 8])
+      .zoomRange([5, 6])
       .add(po.interact());
 
   map.add(po.image()
@@ -19,7 +19,7 @@ $(function () {
         .url("/datasets/" + id + ".json?bbox={B}")
         .on("load", load)
         .clip(false)
-        .zoom(6));
+        );
   }
 
   map.add(po.compass()
