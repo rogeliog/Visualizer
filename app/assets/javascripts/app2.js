@@ -64,6 +64,7 @@ $(function () {
 
   $('#config').on('change', 'input[type=radio]', function(){
     setRadius( $('svg.map circle.point').toArray(), $(this).val());
+    $('footer em').html("(Mostrando " + $(this).val() + ")");
   })
 
   $('input#scale').change(function(){
