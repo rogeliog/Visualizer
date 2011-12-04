@@ -1,6 +1,10 @@
 Visualizer::Application.routes.draw do
   resources :uploaded_files
-  resources :datasets
+  resources :datasets do
+    member do
+      post 'add'
+    end
+  end
 
   match '/map' => 'maps#show'
   match '/tiles/:zoom/:column/:row' => 'maps#tiles'
