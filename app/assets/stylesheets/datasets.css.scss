@@ -1,12 +1,59 @@
 // Place all the styles related to the datasets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin rounded($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+@mixin shadow($x, $y, $s, $color) {
+  -webkit-box-shadow: $x $y $s $color;
+  box-shadow: $x $y $s $color;
+  -moz-box-shadow: $x $y $s $color;
+} 
+
+@mixin linear_gradient($c1, $p1, $c2, $p2){
+background: linear-gradient(bottom, $c1 $p1,$c2 $p2);
+background: -o-linear-gradient(bottom, $c1 $p1,$c2 $p2);
+background: -moz-linear-gradient(bottom, $c1 $p1,$c2 $p2);
+background: -webkit-linear-gradient(bottom, $c1 $p1,$c2 $p2);
+background: -ms-linear-gradient(bottom, $c1 $p1,$c2 $p2);
+}
+@mixin linear_gradient_3($c1, $p1, $c2, $p2, $c3, $p3){
+background: linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
+background: -o-linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
+background: -moz-linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
+background: -webkit-linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
+background: -ms-linear-gradient(bottom, $c1 $p1,$c2 $p2,$c3 $p3);
+}
+
 
 #datasets {
   z-index:1;
   position:absolute;
   padding:10px;
-  background:#ddd;
-  top: 100px;
-  left: 20px;
+  width:200px;
+  top: 40%;
+  left: 0px;
+  h2{
+    font-size:20px;
+    margin-left:10px;
+    color:#000;
+  }
+
+  li{
+    h3 a{
+      font-size:10px;
+      text-decoration:none;
+    }
+    padding:10px;
+    height:10px;
+    @include shadow(0px, 1px, 2px, #999);
+    background: rgba(245,245,245,0.9);
+    margin:5px;
+    &:hover{
+    background: rgba(235,235,235,0.8);
+    }
+  @include rounded(5px);
+  }
 }
