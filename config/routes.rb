@@ -1,7 +1,10 @@
 Visualizer::Application.routes.draw do
   resources :uploaded_files
   resources :datasets
-  match 'map' => 'maps#show'
+
+  match '/map' => 'maps#show'
+  match '/tiles/:zoom/:column/:row' => 'maps#tiles'
+  match '/json' => 'maps#json_query'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
