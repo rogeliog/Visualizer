@@ -12,10 +12,19 @@ class DatasetJob
 
     @dataset.content = []
     @uploaded_file.content.each do |row|
-      row[:coords] = geo.getcoords(row[@dataset.state_column_name])
-      @dataset.content << row
+      name = row.delete(@dataset.state_column_name)
+      lat, lng = geo.getcoords(name)
+      data = {
+        :name => name,
+        :lat => lat,
+        :lng => lng,
+        :attributes => row
+      }
+
+      @dataset.content << data
     end
 
+    @dataset.column_names = @uploaded_file.column_names
     @dataset.processing = "f"
     @dataset.save!
   end

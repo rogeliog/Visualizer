@@ -10,5 +10,10 @@ class DatasetsController < ApplicationController
 
   def show
     @dataset = Dataset.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @dataset }
+    end
   end
 end
