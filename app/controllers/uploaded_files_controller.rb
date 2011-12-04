@@ -7,8 +7,9 @@ class UploadedFilesController < ApplicationController
   end
 
   def create
-    file = save_file(params[:file])
-    redirect_to uploaded_file_path(:id => file.id), :notice => 'se ha subido'
+    @uploaded_file = save_file(params[:file])
+    @dataset = Dataset.new
+    respond_to { |format| format.js }
   end
 
 
