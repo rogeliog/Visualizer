@@ -1,0 +1,85 @@
+
+<div id='map'></div>
+
+<div id='side_menu'>
+  <ul>
+    <li class="trigger" rel='new'><a href="#"><%= image_tag "home.png", :height=>  '50px' %></a></li>
+    <li class="trigger" rel='config'><a href="#"><%= image_tag "like.png" %></a></li>
+    <li class="trigger" rel='share'><a href="#"><%= image_tag "shuffle.png" %></a></li>
+  </ul>
+</div>
+
+<div id='menu'>
+
+  <div id='config' class='item'>
+    <h2>Configuration</h2>
+    <ul>
+      <% @attributes.each do |attr|%>
+        <li>
+        <input type="checkbox" name="option1" value="Milk"> <%= attr%> 
+        </li>
+      <%end %>
+    </ul>
+  </div>
+
+  <div id='new' class='item'>
+    <h2>New</h2>
+    <div class='action' id='action-1' act='1'>
+      <div class='step' class='item'>
+        <h2>Upload your file</h2>
+      </div>
+      <input type="file" name="filename" />
+      <button>Upload it!</button>
+      <a href='#' class='next-action'>Next</a>
+    </div>
+
+    <div class='action' id='action-2' act='2'>
+      <div class='step' class='item'>
+        <h2>Upload your file</h2>
+      </div>
+      <h2>Select a the key column</h2><br />
+      <select>
+        <option value="volvo">Estado</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+
+      <button>Select</button>
+      <a href='#' class='next-action'>Next</a>
+    </div>
+
+    <div class='action' id='action-3' act='3'>
+      <div class='step' class='item'>
+        <h2>Upload your file</h2>
+      </div>
+      <h2>Select a the default column</h2><br />
+      <select>
+        <option value="volvo">Poblacion</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+
+      <button>Select</button>
+      <a href='#' class='next-action'>Next</a>
+    </div>
+  </div>
+
+
+  <div id='share' class='item'>
+    <h2>Share it</h2>
+    <div>
+      <h2>Share on facebook</h2>
+      <h2>Share on twitter</h2>
+      <h2>Embed</h2>
+      <h2>Download PDF</h2>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+
