@@ -1,8 +1,9 @@
 $(function () {
   var po = org.polymaps;
+  var id = $('.tiles-map').attr('id');
 
   var map = po.map()
-      .container(document.getElementById("map").appendChild(po.svg("svg")))
+      .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
       .center({lat: 25.67, lon: -100.30})
       .zoom(6)
       .zoomRange([5, 8])
@@ -12,11 +13,13 @@ $(function () {
       .url(po.url("/tiles/{Z}/{X}/{Y}.png")
       ));
 
-  map.add(po.geoJson()
-      .url("/json?bbox={B}")
-      .on("load", load)
-      .clip(false)
-      .zoom(6));
+  if (id) {
+    map.add(po.geoJson()
+        .url("/datasets/" + id + ".json?bbox={B}")
+        .on("load", load)
+        .clip(false)
+        .zoom(6));
+  }
 
   map.add(po.compass()
       .pan("none"));

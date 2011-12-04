@@ -26,11 +26,11 @@ $ ->
     item = $("<li></li>").append(radio).append(label)
     $('#config ul').append(item)
 
-  $('#datasets a').click (e)->
-    e.preventDefault()
-    id = $(this).attr('data')
-    $.getJSON "/datasets/#{id}", (data, status)->
-      console.log(data)
-      $('#config ul').html('')
-      append_dataset_column column for column in data.column_names
-      generate_x_match_form data.column_names, id
+  # $('#datasets a').click (e)->
+  #   e.preventDefault()
+  #   id = $(this).attr('data')
+  #   $.getJSON "/datasets/#{id}", (data, status)->
+  #     console.log(data)
+  #     $('#config ul').html('')
+  #     append_dataset_column column for column in data.column_names
+  #     generate_x_match_form data.column_names, id
