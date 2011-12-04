@@ -24,9 +24,12 @@ $(function () {
   map.add(po.compass()
       .pan("none"));
 
-  var setRadius = function(points) {
+  var setRadius = function(points, name) {
     $.each(points, function(index, point){
-      console.log(point.feature);
+      // console.log(point.feature);
+      // var val = point.feature.properties[name];
+      // console.log(val);
+
       point.setAttribute("r", Math.ceil(Math.random()* 50));
     });
   };
@@ -43,7 +46,7 @@ $(function () {
       point.setAttribute("cx", 0);
       point.setAttribute("cy", 0);
       point.setAttribute("class", "point");
-      point.feature = f;
+      point.feature = f.data;
 
       points.push(point);
 
@@ -56,7 +59,6 @@ $(function () {
   };
 
   $('#config').on('change', 'input[type=radio]', function(){
-    console.log($(this).val());
-    setRadius( $('svg.map circle.point').toArray() );
+    setRadius( $('svg.map circle.point').toArray(), $(this).val());
   })
 });

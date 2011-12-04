@@ -30,7 +30,11 @@ class MapsController < ApplicationController
   end
 
   def json_query
+<<<<<<< HEAD
     data = Dataset.find(params[:id]).content
+=======
+    data = Dataset.where(:processing => "f").first.content
+>>>>>>> wip
 
     bb  = params[:bbox].split(',')
     lng = Range.new(*[bb[0], bb[2]].map(&:to_f).sort)
