@@ -77,17 +77,18 @@
         <div id='loader'>
           <%= image_tag 'ajax-loader.gif' %>
         </div>
-
       </div>
 
-
+      <% if @dataset %>
       <div id='share' class='item'>
-        <h2>Share it</h2>
-        <ul>
-        </ul>
+        <h2>Comparte</h2>
+        Copia este código y pegalo en tu sitio o blog.
+        <textarea>
+<iframe frameborder="0" scrolling="no" name="ifr" src="<%= embeded_url(@dataset) %>" style="width:800px;height:640px;"></iframe>
+        </textarea>
       </div>
+      <% end %>
     </div>
-
     
     <footer>
       <% if @dataset %>

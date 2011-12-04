@@ -12,4 +12,5 @@ Visualizer::Application.routes.draw do
   match '/datasets/:id.json' => 'maps#json_query'
   match '/datasets/:id/ranges.json' => 'maps#ranges'
   match '/maps/:id' => 'maps#show', :as => :dataset
+  match '/maps/:id/embeded' => 'maps#embeded', :as => :embeded
 end
