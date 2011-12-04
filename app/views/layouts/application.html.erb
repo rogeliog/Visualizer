@@ -31,17 +31,10 @@
       <div id='menu'>
         <div id='top'><span>close x</span></div>
         <div id='config' class='item'>
-          <h2>Configuration</h2>
-          <ul>
-            <% @attributes.try :each do |attr|%>
-              <li>
-              <input name="attribute" type="radio" value="<%= attr %>">
-              <label for="attribute"><%= attr %></label>
-              </input> 
-              </li>
-            <%end %>
-            <input type="range" id="scale" min="50" max="130" />
-          </ul>
+          <div id='step'>
+            <h2>Configuration</h2>
+          </div>
+
           <% if @dataset.present? %>
             <div id='cross_matcher'>
               <div id='form_x_match'><h3>Add a cross match</h3>
@@ -64,6 +57,20 @@
               </form>
             </div>
           <% end %>
+            <input type="range" id="scale" min="50" max="130" size='200' />
+            <div id='step'>
+              <h2>Attributos</h2>
+            </div>
+
+          <ul>
+            <% @attributes.try :each do |attr|%>
+              <li>
+              <input name="attribute" type="radio" value="<%= attr %>">
+              <label for="attribute"><%= attr %></label>
+              </input> 
+              </li>
+            <%end %>
+          </ul>
 
         </div>
 
