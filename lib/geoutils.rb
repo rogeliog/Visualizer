@@ -1,3 +1,5 @@
+# Geocoder::Configuration.lookup = :yahoo
+
 module Geoutils
 
   class Utils
@@ -12,7 +14,7 @@ module Geoutils
     end
 
     def save_state(address)
-      lat, lng = Geocoder.coordinates("#{address}, Mexico")
+      lng, lat = Geocoder.coordinates("#{address}, Mexico")
       state = State.create(:address => address, :coords => [lat, lng])
       state.coords
     end
