@@ -1,13 +1,15 @@
 # encoding: utf-8
 class MapsController < ApplicationController
+  def index
+    @datasets = Dataset.all
+    render :show
+  end
+
   def show
     @datasets = Dataset.all
-    @name = 'Chino'
-    @attributes = ['Educacion', 'Salud', 'Delitos', 'Arrestos', 'IPods robados']
-    @states = ['Nuevo Leon', 'Sonora', 'Yucatan', 'DF'].map do |state|
-      lat,long = Geocoder.coordinates("#{state}, Mexico")
-      {:name => state, :lat => 1, :long => 2, :attributes => {"Educacion" => rand(40) + 10, "Salud" => rand(60) + 10 }}
-    end
+    @dataset  = Dataset.find(params[:id])
+    @attributes = @dataset.column_names
+    render :show
   end
 
   def tiles
@@ -28,15 +30,7 @@ class MapsController < ApplicationController
   end
 
   def json_query
-    data = Dataset.where(:processing => "f").first.content
-
-    # data = [
-    #   {:id=>"Nuevo Leon", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[-99.54509739999999, 25.7276624]}, :properties=>{"Educación"=>26, "Salud"=>36}}, 
-    #   {:id=>"Sonora", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[-110.3308814, 29.2972247]}, :properties=>{"Educación"=>28, "Salud"=>65}}, 
-    #   {:id=>"Yucatan", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[-89.0943377, 20.7098786]}, :properties=>{"Educación"=>13, "Salud"=>11}}, 
-    #   {:id=>"DF", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[-99.133208, 19.4326077]}, :properties=>{"Educación"=>19, "Salud"=>32}}
-    # ]
-
+    data = Dataset.find(params[:id]).content
 
     bb  = params[:bbox].split(',')
     lng = Range.new(*[bb[0], bb[2]].map(&:to_f).sort)
@@ -46,11 +40,6 @@ class MapsController < ApplicationController
       coordinates = element['geometry']['coordinates']
       lat.include?(coordinates.first) && lng.include?(coordinates.last) 
     end
-    
-    # data = data.select do |element|
-    #   coordinates = element[:geometry][:coordinates]
-    #   lat.include?(coordinates.first) && lng.include?(coordinates.last) 
-    # end
 
     render :json => {:type => 'FeatureCollection', :features => data}
   end

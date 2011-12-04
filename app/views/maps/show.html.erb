@@ -6,7 +6,8 @@
     $("#datasets").draggable();
   });
 </script>
-<div id='map'></div>
+<%= debug @dataset.to_param %>
+<div class='tiles-map' id="<%= @dataset.try :to_param %>"></div>
 <div id='datasets'>
   <h2>
     Datasets
@@ -14,7 +15,7 @@
   <ul>
     <% @datasets.each do |dataset|%>
       <li>
-      <%= link_to dataset.name, "#", :data => dataset.id %>
+      <%= link_to dataset.name, dataset %>
       </li>
     <%end%>
   </ul>
@@ -34,9 +35,11 @@
   <div id='config' class='item'>
     <h2>Configuration</h2>
     <ul>
-      <% @attributes.each do |attr|%>
+      <% @attributes.try :each do |attr|%>
         <li>
-        <input type="checkbox" name="option1" value="Milk"> <%= attr %> 
+          <input name="attribute" type="radio" value="attr">
+            <%= attr %>
+          </input> 
         </li>
       <%end %>
     </ul>
@@ -87,17 +90,8 @@
 
   <div id='share' class='item'>
     <h2>Share it</h2>
-    <div>
-      <h2>Share on facebook</h2>
-      <h2>Share on twitter</h2>
-      <h2>Embed</h2>
-      <h2>Download PDF</h2>
-    </div>
+    <ul>
+    </ul>
   </div>
-
-
-
-
-
 </div>
 

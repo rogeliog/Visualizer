@@ -8,15 +8,6 @@ class DatasetsController < ApplicationController
     redirect_to @dataset, :notice => "Ya se creo el dataset"
   end
 
-  def show
-    @dataset = Dataset.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render :json => @dataset }
-    end
-  end
-
   def add
     Dataset.find(params['id']).add(params['matcher-1'],params['matcher-2'], params['name'])
     redirect_to '/map'
