@@ -23,6 +23,24 @@ body {
   height: 100%;
 }
 
+.popover {
+	display: none;
+	background: transparent url('popover.png') no-repeat 0 0;
+	left: 100px;
+	top: 100px;
+	position: absolute;
+	width: 108px;
+	height: 79px;
+}
+
+.popover #popoverLabel {
+	padding: 20px 0 0 0;
+	font-size: 16px;
+  font-weight: bold;
+	color: #ececec;
+	text-align: center;
+}
+
 header {
   display: block;
   height: 50px;
