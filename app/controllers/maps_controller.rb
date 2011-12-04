@@ -1,5 +1,6 @@
 # encoding: utf-8
 class MapsController < ApplicationController
+
   def index
     @datasets = Dataset.all
     render :show
@@ -10,6 +11,11 @@ class MapsController < ApplicationController
     @dataset  = Dataset.find(params[:id])
     @attributes = @dataset.column_names
     render :show
+  end
+
+  def embeded
+    @dataset  = Dataset.find(params[:id])
+    render :show, :layout => 'embeded'
   end
 
   def tiles

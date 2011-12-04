@@ -18,14 +18,18 @@ $(function () {
 
   var map = po.map()
       .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
-      .center({lat: 25.67, lon: -100.30})
-      .zoom(6)
-      .zoomRange([5, 6])
+      .center({lat: 23.0, lon: -102.2})
+      .zoom(window.datasetZoom)
+      .zoomRange([4, 6])
       .add(po.interact());
 
   map.add(po.image()
       .url(po.url("/tiles/{Z}/{X}/{Y}.png")
       ));
+  
+  // map.add(po.image()
+  //     .url(po.url("http://api.tiles.mapbox.com/v3/upload.r2bhxchr,mapbox.mexico-borders.html#{Z}/{X}/{Y}")
+  //     ));
 
   if (id) {
     map.add(po.geoJson()

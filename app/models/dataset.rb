@@ -14,12 +14,21 @@ class Dataset
 
 
   def add matcher_1, matcher_2, name = nil
+    min=0
+    max=0
     name = "#{matcher_1}/#{matcher_2}" if name.blank?
     deep_copy = self.content.deep_copy
 
     deep_copy.each do |element|
-      element['properties'].merge!("#{name}" => parse_result(element['properties']["#{matcher_1}"], element['properties']["#{matcher_2}"]))
+      result = parse_result(element['properties']["#{matcher_1}"], element['properties']["#{matcher_2}"])
+      max = result if result > max
+      min = result if result < min
+      element['properties'].merge!("#{name}" => result)
     end
+    deep_copy_values = self.values.deep_copy
+    deep_copy_values.merge!("#{name}" => [min,max])
+
+    self.values = deep_copy_values
     self.content = deep_copy
     self.column_names << name
     self.save!
