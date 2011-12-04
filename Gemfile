@@ -32,6 +32,8 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'remotipart', '~> 1.0'
+
 
 group :test do
   # Pretty printed test output

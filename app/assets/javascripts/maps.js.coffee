@@ -11,6 +11,7 @@ $(function() {
   $("#action-1").hide();
   $("#action-2").hide();
   $("#action-3").hide();
+  $("#loader").hide();
 
   // Menu triggers
   $('.trigger').click(function() {
@@ -29,6 +30,10 @@ $(function() {
     $("#action-"+act).hide();
     $("#action-"+(parseInt(act)+1)).fadeIn();
 
+  });
+
+  $('#new form').submit(function() {
+    $("#loader").fadeIn();
   });
 
 

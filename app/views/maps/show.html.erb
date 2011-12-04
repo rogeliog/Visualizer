@@ -46,45 +46,16 @@
   </div>
 
   <div id='new' class='item'>
-    <h2>New</h2>
-    <div class='action' id='action-1' act='1'>
-      <div class='step' class='item'>
-        <h2>Upload your file</h2>
-      </div>
+    <div id='step' class='item'>
+      <h2>Upload your CSV file</h2>
+    </div>
+    <div id='action'>
       <%= render 'uploaded_files/form'%>
     </div>
-
-    <div class='action' id='action-2' act='2'>
-      <div class='step' class='item'>
-        <h2>Upload your file</h2>
-      </div>
-      <h2>Select a the key column</h2><br />
-      <select>
-        <option value="volvo">Estado</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-
-      <button>Select</button>
-      <a href='#' class='next-action'>Next</a>
+    <div id='loader'>
+      <%= image_tag 'ajax-loader.gif' %>
     </div>
 
-    <div class='action' id='action-3' act='3'>
-      <div class='step' class='item'>
-        <h2>Upload your file</h2>
-      </div>
-      <h2>Select a the default column</h2><br />
-      <select>
-        <option value="volvo">Poblacion</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-
-      <button>Select</button>
-      <a href='#' class='next-action'>Next</a>
-    </div>
   </div>
 
 
