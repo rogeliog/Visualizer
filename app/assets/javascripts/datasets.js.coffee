@@ -6,8 +6,10 @@
 $ ->
 
   append_dataset_column = (column_name)->
-    elem = $("<li><input type=\"checkbox\" name=\"column_name\" value=\"#{column_name}\" /> #{column_name}</li>")
-    $('#config ul').append(elem)
+    radio = $("<input type=\"radio\" name=\"column_name\" id=\"#{column_name}\" value=\"#{column_name}\" />")
+    label = $("<label for=\"#{column_name}\"> #{column_name}</label>")
+    item = $("<li></li>").append(radio).append(label)
+    $('#config ul').append(item)
 
   $('#datasets a').click (e)->
     e.preventDefault()

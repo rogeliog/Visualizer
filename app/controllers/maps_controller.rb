@@ -28,14 +28,15 @@ class MapsController < ApplicationController
   end
 
   def json_query
-    data = [{:id=>"Nuevo Leon", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[25.7276624, -99.54509739999999]}, :properties=>{"Educación"=>26, "Salud"=>36}}, {:id=>"Sonora", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[29.2972247, -110.3308814]}, :properties=>{"Educación"=>28, "Salud"=>65}}, {:id=>"Yucatan", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[20.7098786, -89.0943377]}, :properties=>{"Educación"=>13, "Salud"=>11}}, {:id=>"DF", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[19.4326077, -99.133208]}, :properties=>{"Educación"=>19, "Salud"=>32}}]
+    #data = [{:id=>"Nuevo Leon", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[25.7276624, -99.54509739999999]}, :properties=>{"Educación"=>26, "Salud"=>36}}, {:id=>"Sonora", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[29.2972247, -110.3308814]}, :properties=>{"Educación"=>28, "Salud"=>65}}, {:id=>"Yucatan", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[20.7098786, -89.0943377]}, :properties=>{"Educación"=>13, "Salud"=>11}}, {:id=>"DF", :type=>"Feature", :geometry=>{:type=>"Point", :coordinates=>[19.4326077, -99.133208]}, :properties=>{"Educación"=>19, "Salud"=>32}}]
+    data = Dataset.where(:processing = "f").first.content
 
     bb  = params[:bbox].split(',')
     lat = Range.new(*[bb[0], bb[2]].map(&:to_f).sort)
     lng = Range.new(*[bb[1], bb[3]].map(&:to_f).sort)
 
     data = data.select do |element|
-      coordinates = element[:geometry][:coordinates]
+      coordinates = element['geometry']['coordinates']
       lat.include?(coordinates.first) && lng.include?(coordinates.last) 
     end
 
