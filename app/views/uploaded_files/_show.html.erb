@@ -1,17 +1,23 @@
+
 <%= form_for @dataset, :method => :post, :remote => true do |f| %>
   <p>
-  <%= f.label :name, :value => "Nombre" %><br />
+  <%= f.label :name, "Nombre" %><br />
   <%= f.text_field :name%>
   <%= hidden_field_tag :uploaded_file_id, @uploaded_file.id %>
   </p>
 
   <p>
-  <%= f.label :state_column_name, :value => "Columna de estado" %><br />
+  <%= f.label :description, "Descripcion corta" %><br />
+  <%= f.text_area :description, :rows => 4, :cols => 25 %>
+  </p>
+
+  <p>
+  <%= f.label :state_column_name, "Columna de estado" %><br />
   <%= f.select :state_column_name, @uploaded_file.column_names, :include_blank => true %>
   </p>
 
   <p>
-  <%= f.label :default_column_name, :value => "Columna principal" %><br />
+  <%= f.label :default_column_name, "Columna principal" %><br />
   <%= f.select :default_column_name, @uploaded_file.column_names, :include_blank => true %>
   </p>
 
