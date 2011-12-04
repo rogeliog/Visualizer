@@ -2,6 +2,7 @@ class Dataset
   include Mongoid::Document
 
   field :name
+  field :description
   field :state_column_name
   field :default_column_name
   field :column_names

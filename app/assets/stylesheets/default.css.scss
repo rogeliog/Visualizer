@@ -175,5 +175,25 @@ header form.search input[type=submit]:active {
 }
 
 footer {
-  
+  display: block;
+  height: 25px;
+  padding-top: 5px;
+  width: 100%;
+  z-index: 10000;
+  position: absolute;
+  bottom:0;
+  background-color:#fff;
+  text-align: center;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fff), to(#f6f6f6));
+  background-image: -moz-linear-gradient(top, #fff, #f6f6f6);
+  background-image: -ms-linear-gradient(top, #fff, #f6f6f6);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f6f6f6));
+  background-image: -webkit-linear-gradient(top, #fff, #f6f6f6);
+  background-image: -o-linear-gradient(top, #fff, #f6f6f6);
+  background-image: linear-gradient(top, #fff, #f6f6f6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f6f6f6', GradientType=0);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
