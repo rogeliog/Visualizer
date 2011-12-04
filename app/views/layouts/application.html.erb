@@ -73,6 +73,22 @@
           </ul>
 
         </div>
+<<<<<<< HEAD
+      </div>
+
+      <% if @dataset %>
+      <div id='share' class='item'>
+        <h2>Comparte</h2>
+        Copia este código y pegalo en tu sitio o blog.
+        <textarea>
+<iframe frameborder="0" scrolling="no" name="ifr" src="<%= embeded_url(@dataset) %>" style="width:800px;height:640px;"></iframe>
+        </textarea>
+      </div>
+      <% end %>
+    </div>
+    
+    <footer>
+=======
 
         <div id='new' class='item'>
           <div id='step' class='item'>
@@ -97,6 +113,7 @@
 
 
       <footer>
+>>>>>>> f002f0881c0e75a56734fe251c00dff2263a3266
       <% if @dataset %>
         <%= @dataset.name %> - <%= @dataset.description %>
         <em>(Mostrando <%= @dataset.default_column_name %>)</em>
