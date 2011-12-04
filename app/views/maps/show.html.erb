@@ -28,13 +28,7 @@
 
 </div>
 
-<div id='side_menu'>
-  <ul>
-    <li class="trigger" rel='new'><a href="#"><%= image_tag "home.png", :height=>  '50px' %></a></li>
-    <li class="trigger" rel='config'><a href="#"><%= image_tag "like.png" %></a></li>
-    <li class="trigger" rel='share'><a href="#"><%= image_tag "shuffle.png" %></a></li>
-  </ul>
-</div>
+<%= render :partial => "shared/side_menu" %>
 
 <div id='menu'>
 
@@ -44,11 +38,34 @@
       <% @attributes.try :each do |attr|%>
         <li>
           <input name="attribute" type="radio" value="<%= attr %>">
-          <label for="attribute"><%= attr %></label>
+            <label for="attribute"><%= attr %></label>
           </input> 
         </li>
       <%end %>
     </ul>
+    <% if @dataset.present? %>
+      <div id='cross_matcher'>
+        <div id='form_x_match'><h3>Add a cross match</h3>
+          <form accept-charset='UTF-8' action="/datasets/<%= @dataset.id %>/add" enctype='multipart/form-data' method='post'>
+
+            <select name="matcher-1">
+              <% for attr in @attributes%>
+                <option value="<%= attr %>"><%= attr %></option>
+              <% end %>
+            </select>
+
+            <select name="matcher-2">
+              <% for attr in @attributes%>
+                <option value="<%= attr %>"><%= attr %></option>
+              <% end %>
+            </select>
+
+            <input type='text' name='name' /><input name='commit' type='submit' value='Add'>
+          </div>
+        </form>
+      </div>
+    <% end %>
+
   </div>
 
   <div id='new' class='item'>
