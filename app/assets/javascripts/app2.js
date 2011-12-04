@@ -1,8 +1,10 @@
 $(function () {
   var po = org.polymaps;
+  var id = $('.tiles-map').attr('id');
+  var ranges;
 
   var map = po.map()
-      .container(document.getElementById("map").appendChild(po.svg("svg")))
+      .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
       .center({lat: 25.67, lon: -100.30})
       .zoom(6)
       .zoomRange([5, 8])
@@ -12,19 +14,29 @@ $(function () {
       .url(po.url("/tiles/{Z}/{X}/{Y}.png")
       ));
 
-  map.add(po.geoJson()
-      .url("/json?bbox={B}")
-      .on("load", load)
-      .clip(false)
-      .zoom(6));
+  if (id) {
+    map.add(po.geoJson()
+        .url("/datasets/" + id + ".json?bbox={B}")
+        .on("load", load)
+        .clip(false)
+        .zoom(6));
+  }
 
   map.add(po.compass()
       .pan("none"));
 
-  var setRadius = function(points) {
+  var setRadius = function(points, name) {
     $.each(points, function(index, point){
-      console.log(point.feature);
-      point.setAttribute("r", Math.ceil(Math.random()* 50));
+      console.log(name);
+      console.log(window.datasetRanges);
+
+      var val    = point.feature.properties[name];
+      var ranges = window.datasetRanges[name];
+      var r = val / ranges[1] * 30;
+
+      if (!isNaN(r)) {
+        point.setAttribute("r", r);
+      };
     });
   };
 
@@ -40,7 +52,7 @@ $(function () {
       point.setAttribute("cx", 0);
       point.setAttribute("cy", 0);
       point.setAttribute("class", "point");
-      point.feature = f;
+      point.feature = f.data;
 
       points.push(point);
 
@@ -49,11 +61,10 @@ $(function () {
       g.setAttribute("data-name", f.data.id);
       c.parentNode.replaceChild(g, c);
     }
-    setRadius(points);
+    setRadius(points, window.datasetDefaultColumn);
   };
 
   $('#config').on('change', 'input[type=radio]', function(){
-    console.log($(this).val());
-    setRadius( $('svg.map circle.point').toArray() );
+    setRadius( $('svg.map circle.point').toArray(), $(this).val());
   })
 });

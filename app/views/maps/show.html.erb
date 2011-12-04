@@ -5,8 +5,15 @@
     $("#menu").draggable();
     $("#datasets").draggable();
   });
+
+  <% if @dataset %>
+    window.datasetRanges = <%= @dataset.values.to_json.html_safe %>;
+    window.datasetDefaultColumn = '<%= @dataset.default_column_name %>';
+    window.datasetCircleRadius = 100;
+  <% end %>
 </script>
-<div id='map'></div>
+<%= debug @dataset.to_param %>
+<div class='tiles-map' id="<%= @dataset.try :to_param %>"></div>
 <div id='datasets'>
   <h2>
     Datasets
@@ -14,32 +21,51 @@
   <ul>
     <% @datasets.each do |dataset|%>
       <li>
-      <%= link_to dataset.name, "#", :data => dataset.id %>
+      <%= link_to dataset.name, dataset %>
       </li>
     <%end%>
   </ul>
 
 </div>
 
-<div id='side_menu'>
-  <ul>
-    <li class="trigger" rel='new'><a href="#"><%= image_tag "home.png", :height=>  '50px' %></a></li>
-    <li class="trigger" rel='config'><a href="#"><%= image_tag "like.png" %></a></li>
-    <li class="trigger" rel='share'><a href="#"><%= image_tag "shuffle.png" %></a></li>
-  </ul>
-</div>
+<%= render :partial => "shared/side_menu" %>
 
 <div id='menu'>
 
   <div id='config' class='item'>
     <h2>Configuration</h2>
     <ul>
-      <% @attributes.each do |attr|%>
+      <% @attributes.try :each do |attr|%>
         <li>
-        <input type="checkbox" name="option1" value="Milk"> <%= attr %> 
+          <input name="attribute" type="radio" value="<%= attr %>">
+            <label for="attribute"><%= attr %></label>
+          </input> 
         </li>
       <%end %>
     </ul>
+    <% if @dataset.present? %>
+      <div id='cross_matcher'>
+        <div id='form_x_match'><h3>Add a cross match</h3>
+          <form accept-charset='UTF-8' action="/datasets/<%= @dataset.id %>/add" enctype='multipart/form-data' method='post'>
+
+            <select name="matcher-1">
+              <% for attr in @attributes%>
+                <option value="<%= attr %>"><%= attr %></option>
+              <% end %>
+            </select>
+
+            <select name="matcher-2">
+              <% for attr in @attributes%>
+                <option value="<%= attr %>"><%= attr %></option>
+              <% end %>
+            </select>
+
+            <input type='text' name='name' /><input name='commit' type='submit' value='Add'>
+          </div>
+        </form>
+      </div>
+    <% end %>
+
   </div>
 
   <div id='new' class='item'>
@@ -58,17 +84,8 @@
 
   <div id='share' class='item'>
     <h2>Share it</h2>
-    <div>
-      <h2>Share on facebook</h2>
-      <h2>Share on twitter</h2>
-      <h2>Embed</h2>
-      <h2>Download PDF</h2>
-    </div>
+    <ul>
+    </ul>
   </div>
-
-
-
-
-
 </div>
 

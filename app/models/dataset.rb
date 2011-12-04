@@ -17,10 +17,9 @@ class Dataset
     deep_copy = self.content.deep_copy
 
     deep_copy.each do |element|
-      element['properties'].merge!("#{name}" => ((element['properties'][matcher_1].to_f/element['properties'][matcher_2].to_f).round(3) rescue 0)) 
+      element['properties'].merge!("#{name}" => parse_result(element['properties']["#{matcher_1}"], element['properties']["#{matcher_2}"]))
     end
     self.content = deep_copy
-    self.save!
     self.column_names << name
     self.save!
   end
@@ -33,6 +32,17 @@ class Dataset
       end
     end
     max
+  end
+  private
+
+  def parse_result(matcher_1,matcher_2)
+      if matcher_1.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and  matcher_2.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and !matcher_2.zero?
+        result = (matcher_1.to_f/matcher_2.to_f).round(3) rescue 0
+      else
+        result = 0.0
+      end
+      result = 0 unless result.class == Float
+      result
   end
 
 end
