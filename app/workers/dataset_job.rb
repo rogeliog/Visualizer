@@ -10,6 +10,7 @@ class DatasetJob
     @uploaded_file = UploadedFile.find(@uploaded_file_id)
     geo = Geoutils::Utils.new
 
+    props = []
     @dataset.content = []
     @uploaded_file.content.each do |row|
       name = row.delete(@dataset.state_column_name)
@@ -21,9 +22,17 @@ class DatasetJob
         :properties => row
       }
 
+      props << row
       @dataset.content << data
     end
 
+    vals = {}
+    @uploaded_file.column_names.each do |name|
+      sorted     = props.map{ |prop| prop[name].to_i }.sort
+      vals[name] = [sorted.first, sorted.last]
+    end
+
+    @dataset.values = vals
     @dataset.column_names = @uploaded_file.column_names
     @dataset.column_names.delete(@dataset.state_column_name)
     @dataset.processing = "f"

@@ -93,19 +93,27 @@
 #new{
   background:#ddd;
   padding:0px;
-}
-#new .step{
-  background:#f90;
-  padding:10px;
-  margin-bottom:10px;
+  #step{
+    background:#f90;
+    padding:10px;
+    margin-bottom:10px;
+  }
+  #action{
+    padding:10px;
+  }
+  #loader{
+    float:right;
+  }
+
 
 }
-#new .action{
-  padding:20px;
+#cross_matcher{
+    background:#f90;
+    padding:10px;
+    margin-top:10px;
+
 }
-#new .action button{
-  float:right;
-}
+
 #menu{
   background:#ddd;
   padding:0px;
@@ -126,3 +134,4 @@
 #menu li:hover{
   background:#fff;
 }
+

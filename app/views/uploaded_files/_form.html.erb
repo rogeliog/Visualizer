@@ -1,5 +1,5 @@
 
-<%= form_tag uploaded_files_path, :method => :post, :multipart => true do |f| %>
+<%= form_tag uploaded_files_path, :method => :post, :remote => true do |f| %>
 
 	<%= label_tag :file %>
 	<%= file_field_tag :file %>
