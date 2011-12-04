@@ -111,9 +111,12 @@
   }
 }
 
-#new{
+#new, #config{
   padding:0px;
-  
+  #scale{
+    width:100%;
+    padding:10px 0;
+  }
   #step{
     background-color: #2961e7;
     background-repeat: repeat-x;
