@@ -6,23 +6,25 @@
 $ ->
 
   generate_x_match_form = (column_names, id)->
-    $("#config").append("<h3>Add a cross match</h3>
+    $("#config #form_x_match").html("")
+    $("#config").append("<div id='form_x_match'><h3>Add a cross match</h3>
                         <form accept-charset='UTF-8' action=\"/datasets/#{id}/add\" enctype='multipart/form-data' method='post'>
-                        </form>")
-    $("#config form").append($(set_x_matches column_names, 1))
-    $("#config form").append($(set_x_matches column_names, 2))
+                        </form></div>")
+    select_x_matches column_names, 1
+    select_x_matches column_names, 2
     $("#config form").append($("<input type='text' name='name' /><input name='commit' type='submit' value='Add'>"))
+
+  select_x_matches = (column_names, num)->
+    select = "<div id=\"x_matcher_#{num}\"><select name=\"matcher-#{num}\">"
+    select += "<option value=\"#{column}\">#{column}</option>" for column in column_names
+    select += "</select></div>"
+    $("#config form").append($(select))
 
   append_dataset_column = (column_name)->
     radio = $("<input type=\"radio\" name=\"column_name\" id=\"#{column_name}\" value=\"#{column_name}\" />")
     label = $("<label for=\"#{column_name}\"> #{column_name}</label>")
     item = $("<li></li>").append(radio).append(label)
     $('#config ul').append(item)
-    
-  set_x_matches = (column_names, num)->
-    select = "<div id=\"x_matcher_#{num}\"><select name=\"matcher-#{num}\">"
-    select += "<option value=#{column}>#{column}</option>" for column in column_names
-    select += "</select></div>"
 
   $('#datasets a').click (e)->
     e.preventDefault()
