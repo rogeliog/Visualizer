@@ -17,101 +17,24 @@
         <ul>
           <% @datasets.each do |dataset|%>
             <li>
-            <h3>
-              <%= link_to truncate(dataset.name), dataset %>
-            </h3>
+              <h3>
+                <%= link_to truncate(dataset.name), dataset %>
+              </h3>
             </li>
           <%end%>
         </ul>
-
       </div>
 
       <%= render :partial => "shared/side_menu" %>
 
       <div id='menu'>
         <div id='top'><span>close x</span></div>
-        <div id='config' class='item'>
-          <h2>Configuration</h2>
-          <ul>
-            <% @attributes.try :each do |attr|%>
-              <li>
-              <input name="attribute" type="radio" value="<%= attr %>">
-              <label for="attribute"><%= attr %></label>
-              </input> 
-              </li>
-            <%end %>
-            <input type="range" id="scale" min="50" max="130" />
-          </ul>
-          <% if @dataset.present? %>
-            <div id='cross_matcher'>
-              <div id='form_x_match'><h3>Add a cross match</h3>
-                <form accept-charset='UTF-8' action="/datasets/<%= @dataset.id %>/add" enctype='multipart/form-data' method='post'>
-
-                  <select name="matcher-1">
-                    <% for attr in @attributes%>
-                      <option value="<%= attr %>"><%= attr %></option>
-                    <% end %>
-                  </select>
-
-                  <select name="matcher-2">
-                    <% for attr in @attributes%>
-                      <option value="<%= attr %>"><%= attr %></option>
-                    <% end %>
-                  </select>
-
-                  <input type='text' name='name' /><input name='commit' type='submit' value='Add'>
-                </div>
-              </form>
-            </div>
-          <% end %>
-
-        </div>
-<<<<<<< HEAD
+        <%= render :partial => 'shared/share' if @dataset %>
+        <%= render :partial => 'shared/settings' %>
+        <%= render :partial => 'shared/upload' %>
       </div>
 
-      <% if @dataset %>
-      <div id='share' class='item'>
-        <h2>Comparte</h2>
-        Copia este código y pegalo en tu sitio o blog.
-        <textarea>
-<iframe frameborder="0" scrolling="no" name="ifr" src="<%= embeded_url(@dataset) %>" style="width:800px;height:640px;"></iframe>
-        </textarea>
-      </div>
-      <% end %>
     </div>
-    
-    <footer>
-=======
-
-        <div id='new' class='item'>
-          <div id='step' class='item'>
-            <h2>Sube tu CSV.</h2>
-          </div>
-          <div id='action'>
-            <%= render 'uploaded_files/form'%>
-          </div>
-          <div id='loader'>
-            <%= image_tag 'ajax-loader.gif' %>
-          </div>
-
-        </div>
-
-
-        <div id='share' class='item'>
-          <h2>Share it</h2>
-          <ul>
-          </ul>
-        </div>
-      </div>
-
-
-      <footer>
->>>>>>> f002f0881c0e75a56734fe251c00dff2263a3266
-      <% if @dataset %>
-        <%= @dataset.name %> - <%= @dataset.description %>
-        <em>(Mostrando <%= @dataset.default_column_name %>)</em>
-      <% end %>
-      </footer>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
