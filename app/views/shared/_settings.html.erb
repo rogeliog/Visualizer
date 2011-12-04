@@ -3,8 +3,8 @@
     <h2>Configuration</h2>
   </div>
   <% if @dataset.present? %>
-    <div id='cross_matcher'>
-      <div id='form_x_match'><h3>Add a cross match</h3>
+    <div class='cross_matcher'>
+      <div class='form_x_match'><h3>Add a cross match</h3>
         <form accept-charset='UTF-8' action="/datasets/<%= @dataset.id %>/add" enctype='multipart/form-data' method='post'>
 
           <select name="matcher-1">
