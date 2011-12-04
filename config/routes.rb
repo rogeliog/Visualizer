@@ -3,6 +3,7 @@ Visualizer::Application.routes.draw do
   resources :datasets, :only => [:create, :add] do
     member do
       post 'add'
+      get  'processing_status'
     end
   end
 

@@ -107,6 +107,7 @@
 
 
 }
+
 #cross_matcher{
     background:#f90;
     padding:10px;
@@ -124,6 +125,15 @@
   z-index:1;
   max-height: 400px;
   overflow: scroll;
+}
+#menu #top{
+  text-align:right;
+  background:#aaa;
+  color:#fff;
+  padding:3px;
+  span{
+    cursor:pointer;
+  }
 }
 #menu ul{
   list-style:none;
