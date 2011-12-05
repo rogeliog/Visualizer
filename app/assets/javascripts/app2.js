@@ -17,7 +17,7 @@ $(function () {
   var ranges;
 
   var map = po.map()
-      .container(document.getElementsByClassName("tiles-map")[0].appendChild(po.svg("svg")))
+      .container(document.getElementsByClassName("tiles-map")[0].appendChild())
       .center({lat: 23.0, lon: -102.2})
       .zoom(window.datasetZoom)
       .zoomRange([4, 6])

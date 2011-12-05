@@ -1,7 +1,7 @@
 <% content_for :head do %>
 <% end %>
 <header>
-  <a href="http://xmatch.info" class="logo">xmatch.info</a>
+  <a href="/" class="logo">xmatch.info</a>
   <ul class="user-login-menu">
     <li><a href="#">Login</a></li>
     <li><a href="#">Registro</a></li>
@@ -15,3 +15,16 @@
     <input class="" name="submit" type="submit" value="Buscar" />
   </form>
 </header>
+
+
+<%#Temporary message until we actually implement Devise or other type of user%>
+<%#registration and authentication.%>
+<div id="overlay"></div>
+<div id="lightbox">
+  <a href="#" id="close">Close</a>
+  <p>We are sorry.</p>
+  <p>We didn't have enough time during OpenData to complete the user
+  management functions. However we will be working on this right after
+  OpenData has ended. Thank you.</p>
+</div>
+
