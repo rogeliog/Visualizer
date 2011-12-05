@@ -200,7 +200,7 @@
   width:420px;
   position:fixed;
   z-index:1;
-  max-height: 400px;
+  max-height: 500px;
   overflow: auto;
   min-height:200px;
   -webkit-border-radius: 4px;
@@ -209,6 +209,25 @@
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	
+	.item {
+	  
+	  h1 {
+	    font-size: 14px;
+	    line-height: 18px;
+	    padding: 5px;
+	  }
+	  
+	  ol {
+	    
+	    li {
+	      
+	      img {
+	        vertical-align: middle;
+	      }
+	    }
+	  }
+	}
 	
 	#top,#info_top{
     text-align: right;
@@ -305,8 +324,8 @@
   right:200px;
 }
 #info_menu{
-  top:200px;
-  left:200px;
+  top: 200px;
+  left: 400px;
 }
 
 circle {
