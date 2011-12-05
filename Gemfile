@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem 'rake', '0.8.7'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.1.3'
+gem 'thin'
 
 gem 'sqlite3'
 
@@ -11,6 +11,22 @@ gem 'mongoid'
 gem 'bson_ext'
 gem 'delayed_job'
 gem 'geocoder'
+gem 'remotipart', '~> 1.0'
+gem 'jquery-rails'
+
+group :production do
+  gem 'pg'
+  #gem 'therubyracer-heroku', '0.8.1.pre3'
+end
+
+group :development do
+  #gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :test do
+  # Pretty printed test output
+  gem 'turn', '0.8.2', :require => false
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,22 +36,4 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'remotipart', '~> 1.0'
-
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', '0.8.2', :require => false
-end
