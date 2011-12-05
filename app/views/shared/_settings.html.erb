@@ -1,10 +1,10 @@
 <div id='config' class='item'>
   <div id='step'>
-    <h2>Configuration</h2>
+    <h2>Configuración</h2>
   </div>
   <% if @dataset.present? %>
     <div class='cross_matcher'>
-      <div class='form_x_match'><h3>Add a cross match</h3>
+      <div class='form_x_match'><h3>Genera cruces.</h3>
         <form accept-charset='UTF-8' action="/datasets/<%= @dataset.id %>/add" enctype='multipart/form-data' method='post'>
 
           <select name="matcher-1">
@@ -12,20 +12,20 @@
               <option value="<%= attr %>"><%= attr %></option>
             <% end %>
           </select>
-
+          <p>entre:</p>
           <select name="matcher-2">
             <% for attr in @attributes%>
               <option value="<%= attr %>"><%= attr %></option>
             <% end %>
           </select>
 
-          <input type='text' name='name' /><input name='commit' type='submit' value='Add'>
+          <input type='text' name='name' placeholder="Nombre del cruce" /><input name='commit' type='submit' value='Cruzar'>
         </div>
       </form>
     </div>
   <% end %>
   <div id='step'>
-    <h2>Atributos</h2>
+    <h2>Cruces</h2>
   </div>
   <ul>
     <% @attributes.try :each do |attr|%>
