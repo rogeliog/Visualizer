@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-class Dataset
+class Dataset<D-s>
   constructor: (id, name, path, container)->
     @id = id
     @processing = false
