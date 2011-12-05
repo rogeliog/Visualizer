@@ -73,6 +73,10 @@ $(function() {
   // Call to action
   $('.call-to-action .button').click(function() {
     $('.trigger[rel=new]').click();
+  }); 
+   
+  $('.call-to-action .close').click(function() {
+    $('.call-to-action').hide();
   });
 
 });
