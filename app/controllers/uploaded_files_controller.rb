@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'csv'
+require 'iconv'
 
 class UploadedFilesController < ApplicationController
 
@@ -27,8 +28,14 @@ class UploadedFilesController < ApplicationController
 
 
   def save_file(file)
-    data = CSV.read(file.path)
-    CSV.parse(File.open(file.path, "r:UTF-8")) 
+    i = Iconv.new("UTF-8","LATIN1")
+    # data = CSV.parse(i.icon(file.read))
+    begin
+      data = CSV.parse(File.open(file.path, "r:ISO-8859-1"))
+    rescue
+      data = CSV.parse(i.iconv File.open(file.path, "r:ISO-8859-1").read)
+    end
+    # CSV.parse(File.open(file.path, "r:UTF-8")) 
     # get column names
     column_names = data.shift
 
