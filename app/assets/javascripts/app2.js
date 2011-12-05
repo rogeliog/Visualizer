@@ -16,6 +16,11 @@ $(function () {
   var id = $('.tiles-map').attr('id');
   var ranges;
 
+  // Call to action eye candy
+  $('.call-to-action').animate({
+    left: '10px'
+  }, 2000, function() {});
+
   var map = po.map()
       .container(document.getElementsByClassName("tiles-map")[0].appendChild())
       .center({lat: 23.0, lon: -102.2})
@@ -105,4 +110,5 @@ $(function () {
     window.datasetScale = $(this).val();
     setRadius( $('svg.map circle.point').toArray(), window.datasetProperty);
   });
+  
 });
