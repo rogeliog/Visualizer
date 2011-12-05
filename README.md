@@ -6,6 +6,15 @@ Connecting the dots.
 
 **Convert your data into beautiful maps instantly.**
 
+##Run it
+
+
+Install [MongoDB](http://www.mongodb.org/) 
+
+To upload the files we use a worker, so be sure to run it
+`bundle exec rake jobs:work`
+
+##License
 
 Copyright (c) 2011 [Crossmatch.info](https://github.com/rogeliog/Visualizer)
 
