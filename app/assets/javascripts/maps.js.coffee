@@ -47,6 +47,18 @@ $(function() {
 
 
 
+  // Temporary light box for Sign In and Sign Up links
+  $('#overlay').css('opacity', '0.8');
+
+  $('.user-login-menu a').click(function (e) {
+    e.preventDefault();
+    $('#overlay, #lightbox').show();
+  });
+
+  $('#lightbox #close').click(function (e) {
+    e.preventDefault();
+    $('#overlay, #lightbox').hide();
+  });
 
 });
 
