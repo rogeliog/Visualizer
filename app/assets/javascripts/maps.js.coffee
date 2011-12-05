@@ -33,6 +33,12 @@ $(function() {
 
   });
 
+    // Menu triggers
+  $('#info_top span').click(function() {
+    $('#info_menu').hide();
+  });
+
+
   // Upload wizard
   $('.next-action').click(function() {
     var act = $(this).parent().attr("act");

@@ -5,6 +5,7 @@
   <script>
     $(function(){
       $("#menu").draggable();
+      $("#info_menu").draggable();
       $("#datasets").draggable();
     });
 
@@ -17,6 +18,9 @@
   </script>
 <% end %>
 
+<% if map_index? %>
+  <%= render 'shared/info'%>
+<% end %>
 <div class='tiles-map' id="<%= @dataset.try :to_param %>"></div>
 
 <footer>
