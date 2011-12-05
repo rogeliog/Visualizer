@@ -92,6 +92,12 @@
 
 .tiles-map {
   display: block;
+  top:35px;
+  height: 100%;
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  position: absolute;
   
   .compass {
     .back { fill: #eee; fill-opacity: .8; }
@@ -309,7 +315,3 @@ circle {
   fill: blue;
 }
 
-.tiles-map{
-  position:relative;
-  top:35px;
-}

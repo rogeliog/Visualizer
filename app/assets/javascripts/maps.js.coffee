@@ -48,7 +48,7 @@ $(function() {
 
 
   // Temporary light box for Sign In and Sign Up links
-  $('#overlay').css('opacity', '0.8');
+  $('#overlay').css('opacity', '0.4');
 
   $('.user-login-menu a').click(function (e) {
     e.preventDefault();
@@ -58,6 +58,16 @@ $(function() {
   $('#lightbox #close').click(function (e) {
     e.preventDefault();
     $('#overlay, #lightbox').hide();
+  });
+  
+  $('.main-menu a#who').click(function (e) {
+    e.preventDefault();
+    $('#overlay, #who_info').show();
+  });
+
+  $('#who_info #close_who').click(function (e) {
+    e.preventDefault();
+    $('#overlay, #who_info').hide();
   });
 
 });

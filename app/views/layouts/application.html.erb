@@ -13,7 +13,7 @@
       <%= render :partial => "shared/header" %>
       <%= yield %>
       <div id='datasets'>
-        <h2>Mas mapas</h2>
+        <h2>Más mapas</h2>
         <ul>
           <% @datasets.each do |dataset|%>
             <li><h3><%= link_to truncate(dataset.name), dataset %></h3></li>
