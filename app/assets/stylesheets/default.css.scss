@@ -30,9 +30,9 @@ a {
 .popover {
 	display: none;
 	background: transparent url('popover.png') no-repeat 0 0;
+	position: absolute;
 	left: 100px;
 	top: 100px;
-	position: absolute;
 	width: 108px;
 	height: 79px;
 }
@@ -44,6 +44,35 @@ a {
 	color: #ececec;
 	text-align: center;
 }
+
+
+/*** Call to action ***/
+.call-to-action {
+	background: transparent url(action-bkg.png) no-repeat 0 0;
+	position: absolute;
+  left: 10px;
+  bottom: 40px;
+	width: 280px;
+	height: 180px;
+	padding: 10px;
+}
+.call-to-action li {
+	line-height: 22px;
+	font-size: 16px;
+	color: #5f5f5f;
+}
+.call-to-action a.button {
+	background: transparent url(action-btn.png) 0 0 no-repeat;
+	width: 261px;
+	height: 58px;
+	margin-left: 8px;
+	display: block;
+	color: white;
+}
+.call-to-action a.button:hover {
+	background: transparent url(action-btn.png) 1 1 no-repeat;
+}
+
 
 header {
   display: block;

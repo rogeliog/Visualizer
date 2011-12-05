@@ -70,6 +70,11 @@ $(function() {
     $('#overlay, #who_info').hide();
   });
 
+  // Call to action
+  $('.call-to-action .button').click(function() {
+    $('.trigger[rel=new]').click();
+  });
+
 });
 
 
