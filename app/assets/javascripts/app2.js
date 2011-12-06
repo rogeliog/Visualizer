@@ -59,9 +59,9 @@ $(function () {
         var pointPosition = $(this).position();
         $(".popover").css({
           top: pointPosition.top - 30,
-          left: pointPosition.left - 10
+          left: pointPosition.left - 10,
         });
-        $(".popover #popoverLabel").text(humanNumber(val));
+        $(".popover #popoverLabel").text($(this).parent().attr('data-name') + ":\n" + humanNumber(val));
         $(".popover").show();
       });
       
