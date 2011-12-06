@@ -45,11 +45,17 @@ class UploadedFilesController < ApplicationController
     data.each do |row|
       new_row = {}
 
-      column_names.each_with_index { |name, idx| new_row[name] = row[idx] }
+      column_names.each_with_index { |name, idx| new_row[name] = parse_value(row[idx]) }
 
       content << new_row
     end
 
     pf = UploadedFile.create(:column_names => column_names, :content => content)
+  end
+
+  private
+
+  def parse_value( value)
+    value.match(/^[0-9,.]+$/).present? ? value.gsub(/[\.\,](\d{3})/, '\1') : value
   end
 end
