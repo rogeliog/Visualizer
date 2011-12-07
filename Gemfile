@@ -19,12 +19,21 @@ group :production do
   #gem 'therubyracer-heroku', '0.8.1.pre3'
 end
 
-group :development do
-  gem 'ruby-debug19', :require => 'ruby-debug'
-end
-
-group :test do
-  # Pretty printed test output
+group :development, :test do 
+  gem 'linecache19'
+  gem 'capybara',">= 1.0.0"
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'fuubar'
+  gem "spork", "> 0.9.0.rc"
+  gem "guard-spork"
+  gem "guard-rspec"
+  gem 'growl_notify'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  gem "ruby-debug19"
+  gem "selenium-client"
   gem 'turn', '0.8.2', :require => false
 end
 
