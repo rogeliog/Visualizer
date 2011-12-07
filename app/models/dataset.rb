@@ -34,25 +34,12 @@ class Dataset
     self.save!
   end
 
-  def max
-    max= Hash.new
-    self.content.each do |element|
-      element['properties'].each do |property|
-        max["#{property[0]}"] = property[1].to_i  if (property[1].to_i > max["#{property[0]}"].to_i or max["#{property[0]}"].blank?)
-      end
-    end
-    max
-  end
-  private
-
   def parse_result(matcher_1,matcher_2)
-      if matcher_1.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and  matcher_2.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and !matcher_2.to_f.zero?
-        result = (matcher_1.to_f/matcher_2.to_f).round(3) rescue 0
-      else
-        result = 0.0
-      end
-      result = 0 unless result.class == Float
-      result
+    if matcher_1.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and  matcher_2.to_s.match(/^[\d]+(\.[\d]+){0,1}$/) and !matcher_2.to_f.zero?
+      (matcher_1.to_f/matcher_2.to_f).round(3) rescue 0.0
+    else
+      0.0
+    end
   end
 
 end
