@@ -61,7 +61,8 @@ $(function () {
           top: pointPosition.top - 30,
           left: pointPosition.left - 10,
         });
-        $(".popover #popoverLabel").text($(this).parent().attr('data-name') + ":\n" + humanNumber(val));
+        
+        $(".popover #popoverLabel").text(humanNumber(val));
         $(".popover").show();
       });
       
